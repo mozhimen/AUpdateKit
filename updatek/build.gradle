@@ -30,10 +30,9 @@ android {
 }
 
 dependencies {
-
     implementation project(':SwiftKit:basick')
-    implementation project(':SwiftKit:componentk')
-    implementation project(':SwiftKit:underlayk')
+    implementation project(':AInstallKit:installk_builder')
+    implementation project(':ANetKit_File_Downloader:netk_file_downloader')
     //implementation project(/*project.path.replace(project.name, '') +*/ ':NetKit_FileDownloader:netkfiledownloader')
 
     //implementation 'com.github.a-voyager:AutoInstaller:v1.1'

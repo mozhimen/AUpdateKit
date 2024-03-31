@@ -2,26 +2,23 @@ package com.mozhimen.updatek
 
 import android.net.Uri
 import android.util.Log
+import com.mozhimen.basick.lintk.optins.ODeviceRoot
 import com.mozhimen.updatek.commons.IUpdateKListener
 import com.mozhimen.updatek.commons.ISuspendUpdateKListener
 import com.mozhimen.updatek.cons.CUpdateKEvent
-import com.mozhimen.basick.lintk.optin.OptInDeviceRoot
-import com.mozhimen.basick.manifestk.cons.CPermission
-import com.mozhimen.basick.manifestk.annors.AManifestKRequire
-import com.mozhimen.basick.manifestk.cons.CManifest
 import com.mozhimen.basick.postk.event.PostKEventLiveData
-import com.mozhimen.basick.utilk.android.content.UtilKApk
 import com.mozhimen.basick.utilk.bases.BaseUtilK
 import com.mozhimen.basick.utilk.android.content.UtilKPackageInfo
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.basick.utilk.kotlin.getSplitLastIndexToEnd
 import com.mozhimen.basick.utilk.kotlin.UtilKStrFile
 import com.mozhimen.basick.utilk.kotlin.UtilKStrPath
-import com.mozhimen.componentk.installk.InstallK
-import com.mozhimen.componentk.netk.file.download.commons.IDownloadListener
-import com.mozhimen.componentk.netk.file.download.DownloadRequest
-import com.mozhimen.componentk.netk.file.download.annors.ADownloadEngine
-import com.mozhimen.componentk.netk.file.download.annors.ANotificationVisibility
-import com.mozhimen.underlayk.logk.LogK
+import com.mozhimen.basick.utilk.wrapper.UtilKApk
+import com.mozhimen.installk.builder.InstallKBuilder
+import com.mozhimen.netk.file.downloader.DownloadRequest
+import com.mozhimen.netk.file.downloader.annors.ADownloadEngine
+import com.mozhimen.netk.file.downloader.annors.ANotificationVisibility
+import com.mozhimen.netk.file.downloader.commons.IDownloadListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
@@ -35,26 +32,15 @@ import kotlin.coroutines.resume
  * @Date 2022/2/24 12:15
  * @Version 1.0
  */
-@OptIn(OptInDeviceRoot::class)
-@AManifestKRequire(
-    CPermission.READ_EXTERNAL_STORAGE,
-    CPermission.WRITE_EXTERNAL_STORAGE,
-    CPermission.INTERNET,
-    CPermission.REQUEST_INSTALL_PACKAGES,
-    CPermission.INSTALL_PACKAGES,
-    CPermission.READ_INSTALL_SESSIONS,
-    CPermission.REPLACE_EXISTING_PACKAGE,
-    CPermission.BIND_ACCESSIBILITY_SERVICE,
-    CManifest.SERVICE_ACCESSIBILITY
-)
+@ODeviceRoot
 class UpdateK : BaseUtilK() {
 
     private val _apkPath by lazy { UtilKStrPath.Absolute.Internal.getCache() + "/hotupdatek" }
-    private val _installK by lazy { InstallK() }
+    private val _installK by lazy { InstallKBuilder() }
     private var _downloadRequest: DownloadRequest? = null
     private var _hotupdateKListener: IUpdateKListener? = null
     private var _suspendHotupdateKListener: ISuspendUpdateKListener? = null
-    fun getInstallK(): InstallK {
+    fun getInstallK(): InstallKBuilder {
         return _installK
     }
 
@@ -161,7 +147,7 @@ class UpdateK : BaseUtilK() {
 
             override fun onDownloadFailed(e: Throwable) {
                 e.printStackTrace()
-                LogK.etk(TAG, "downloadApk fail msg: ${e.message}")
+                UtilKLogWrapper.e(TAG, "downloadApk fail msg: ${e.message}")
                 coroutine.resume(false)
             }
         })
@@ -209,7 +195,7 @@ class UpdateK : BaseUtilK() {
             true
         } catch (e: Exception) {
             e.printStackTrace()
-            LogK.etk(TAG, "deleteAllOldPkgs: Exception ${e.message}")
+            UtilKLogWrapper.e(TAG, "deleteAllOldPkgs: Exception ${e.message}")
             false
         }
     }
