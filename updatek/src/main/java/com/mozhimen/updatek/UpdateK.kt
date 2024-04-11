@@ -29,7 +29,6 @@ import kotlin.coroutines.resume
  * @ClassName HotUpdateK
  * @Description TODO
  * @Author Kolin Zhao / Mozhimen
- * @Date 2022/2/24 12:15
  * @Version 1.0
  */
 @ODeviceRoot
