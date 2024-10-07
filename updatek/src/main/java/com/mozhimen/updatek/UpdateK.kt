@@ -2,18 +2,18 @@ package com.mozhimen.updatek
 
 import android.net.Uri
 import android.util.Log
-import com.mozhimen.basick.lintk.optins.ODeviceRoot
+import com.mozhimen.kotlin.lintk.optins.ODeviceRoot
 import com.mozhimen.updatek.commons.IUpdateKListener
 import com.mozhimen.updatek.commons.ISuspendUpdateKListener
 import com.mozhimen.updatek.cons.CUpdateKEvent
 import com.mozhimen.basick.postk.event.PostKEventLiveData
-import com.mozhimen.basick.utilk.bases.BaseUtilK
-import com.mozhimen.basick.utilk.android.content.UtilKPackageInfo
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.basick.utilk.kotlin.getSplitLastIndexToEnd
-import com.mozhimen.basick.utilk.kotlin.UtilKStrFile
-import com.mozhimen.basick.utilk.kotlin.UtilKStrPath
-import com.mozhimen.basick.utilk.wrapper.UtilKApk
+import com.mozhimen.kotlin.utilk.bases.BaseUtilK
+import com.mozhimen.kotlin.utilk.android.content.UtilKPackageInfo
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.kotlin.getSplitLastIndexToEnd
+import com.mozhimen.kotlin.utilk.kotlin.UtilKStrFile
+import com.mozhimen.kotlin.utilk.kotlin.UtilKStrPath
+import com.mozhimen.kotlin.utilk.wrapper.UtilKApk
 import com.mozhimen.installk.builder.InstallKBuilder
 import com.mozhimen.netk.file.downloader.DownloadRequest
 import com.mozhimen.netk.file.downloader.annors.ADownloadEngine
