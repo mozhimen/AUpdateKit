@@ -31,7 +31,21 @@ include ':SwiftKit:xmlk'
 include ':AInstallKit'
 project(':AInstallKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AInstallKit")
 include ':AInstallKit:installk_builder'
+//ACacheKit
+include ':ACacheKit'
+project(':ACacheKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ACacheKit")
+include ':ACacheKit:cachek_basic'
+include ':ACacheKit:cachek_sharedpreferences'
+//APostKit
+include ':APostKit'
+project(':APostKit').projectDir = new File("D:\\WorkSpace\\GitHub\\APostKit")
+include ':APostKit:postk_livedata'
 //ANetKit_File_Downloader
 include ':ANetKit_File_Downloader'
 project(':ANetKit_File_Downloader').projectDir = new File("D:\\WorkSpace\\GitHub\\ANetKit_File_Downloader")
 include ':ANetKit_File_Downloader:netk_file_downloader'
+//KUtilKit
+include ':KUtilKit'
+project(':KUtilKit').projectDir = new File("D:\\WorkSpace\\GitHub\\KUtilKit")
+include ':KUtilKit:utilk_android'
+include ':KUtilKit:utilk_kotlin'

@@ -6,19 +6,19 @@ import com.mozhimen.kotlin.lintk.optins.ODeviceRoot
 import com.mozhimen.updatek.commons.IUpdateKListener
 import com.mozhimen.updatek.commons.ISuspendUpdateKListener
 import com.mozhimen.updatek.cons.CUpdateKEvent
-import com.mozhimen.basick.postk.event.PostKEventLiveData
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
-import com.mozhimen.kotlin.utilk.android.content.UtilKPackageInfo
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.kotlin.getSplitLastIndexToEnd
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrFile
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrPath
 import com.mozhimen.kotlin.utilk.wrapper.UtilKApk
 import com.mozhimen.installk.builder.InstallKBuilder
+import com.mozhimen.kotlin.utilk.android.content.UtilKPackage
 import com.mozhimen.netk.file.downloader.DownloadRequest
 import com.mozhimen.netk.file.downloader.annors.ADownloadEngine
 import com.mozhimen.netk.file.downloader.annors.ANotificationVisibility
 import com.mozhimen.netk.file.downloader.commons.IDownloadListener
+import com.mozhimen.postk.livedata.PostKLiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
@@ -135,7 +135,7 @@ class UpdateK : BaseUtilK() {
 
             override fun onProgressUpdate(percent: Int) {
                 Log.d(TAG, "downloadApk onProgressUpdate: percent $percent")
-                PostKEventLiveData.instance.with<String>(CUpdateKEvent.HOTUPDATEK_PROGRESS).postValue("$percent")
+                PostKLiveData.instance.with<String>(CUpdateKEvent.HOTUPDATEK_PROGRESS).postValue("$percent")
             }
 
             override fun onDownloadComplete(uri: Uri) {
@@ -179,7 +179,7 @@ class UpdateK : BaseUtilK() {
      * @return Boolean
      */
     fun isNeedUpdate(remoteVersionCode: Int): Boolean =
-        (UtilKPackageInfo.getVersionCode(_context) < remoteVersionCode).also {
+        (UtilKPackage.getVersionCode(0) < remoteVersionCode).also {
             Log.d(TAG, "isNeedUpdate: $it")
         }
 

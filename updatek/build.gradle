@@ -32,6 +32,7 @@ android {
 dependencies {
     implementation project(':SwiftKit:basick')
     implementation project(':AInstallKit:installk_builder')
+    implementation project(':APostKit:postk_livedata')
     implementation project(':ANetKit_File_Downloader:netk_file_downloader')
     //implementation project(/*project.path.replace(project.name, '') +*/ ':NetKit_FileDownloader:netkfiledownloader')
 
